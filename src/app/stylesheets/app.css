@@ -1,0 +1,112 @@
+﻿html {
+    position: relative;
+    min-height: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+}
+
+body {
+    padding-bottom: 100px;
+}
+
+header {
+    background-color: rgb(86, 61, 124);
+    color: white;
+}
+
+footer {
+    width: 100%;
+    background-color: rgb(247, 247, 247);
+    position: absolute;
+    bottom: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.navbar-brand a, .navbar-brand a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.nav-link {
+    padding: 0 10px;
+    line-height: 35px;
+}
+
+.sidenav {
+    padding: 0px 0px 0px 0px;
+}
+
+@media screen and (max-width: 767px) {
+    .sidenav {
+        height: auto;
+        padding: 15px;
+    }
+
+    .row.content {
+        height: auto;
+    }
+}
+
+ul.nav-item {
+    margin-bottom: 0px;
+    padding-left: 0;
+}
+
+.sidenav .fa {
+    margin-right: 10px;
+}
+
+.sidebar-nav-item {
+    list-style: none;
+}
+
+.sidebar-nav-item a {
+	display: block;
+	padding: 20px 0px 20px 30px;
+}
+
+.trade-status {
+    border-radius: 6px;
+    padding: 20px; 
+}
+
+table th {
+  border-bottom: 1.5px solid #eceeef !important;
+	border-top: none !important;
+  padding-bottom: 25px;
+}
+
+table td {
+    border: 0px;
+}
+
+.clickable-row:hover {
+  cursor: pointer;
+}
+
+.counterpartyCertified {
+	background-color: #7EC600;
+	color: #fff;
+}
+
+.created {
+    background-color: #f77b33;
+	color: #fff;
+}
+
+.top_10 {
+    margin-top: 10px;
+}
+
+.top_20 {
+    margin-top: 20px;
+}
+
+.top_30 {
+    margin-top: 30px;
+}
+
+.top_40 {
+    margin-top: 40px;
+}

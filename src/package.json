@@ -1,0 +1,51 @@
+{
+  "name": "truffle-init-webpack",
+  "version": "0.0.2",
+  "description": "The Vue Dark Chocolate Truffle Box - A web app that uses Vue, Vuex, Vue-Router, Bootstrap, Webpack and truffle v3 to consume smart contracts.",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kierenh/vue-dark-chocolate.git"
+  },
+  "scripts": {
+    "lint": "eslint ./",
+    "start": "node server.js",
+    "build": "webpack --progress --display-error-details",
+    "production": "cross-env NODE_ENV=production webpack --progress --display-error-details",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config ./webpack.config.js --progress --colors --inline --content-base build --open --hot"
+  },
+  "author": "bnedev",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.0.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.5.1",
+    "copy-webpack-plugin": "^4.0.1",
+    "cross-env": "^5.0.0",
+    "css-loader": "^0.28.7",
+    "eslint": "^4.6.1",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-babel": "*",
+    "eslint-plugin-mocha": "*",
+    "eslint-plugin-promise": "*",
+    "eslint-plugin-standard": "^3.0.1",
+    "file-loader": "^1.0.0",
+    "html-webpack-plugin": "^2.30.1",
+    "json-loader": "^0.5.7",
+    "style-loader": "^0.18.2",
+    "truffle-contract": "^2.0.5",
+    "vue-loader": "^13.0.4",
+    "vue-template-compiler": "^2.4.2",
+    "web3": "^0.18.2",
+    "webpack": "^3.5.5",
+    "webpack-dev-server": "^2.4.5"
+  },
+  "dependencies": {
+    "bootstrap-vue": "^1.0.0-beta.7",
+    "bootstrap4": "0.0.1-security",
+    "express": "^4.15.4",
+    "vue-router": "^2.7.0",
+    "vuex": "^2.4.0",
+    "vuex-router-sync": "^4.3.0"
+  }
+}

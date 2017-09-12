@@ -1,0 +1,65 @@
+https://github.com/ethereumjs/testrpc
+
+Starting a default instance of testrpc yields something like...
+We use these addresses to start a parameterized instance of testrpc to make it easy to use the same accounts over and over again...
+
+EthereumJS TestRPC v4.1.1 (ganache-core: 1.1.2)
+
+Available Accounts
+==================
+(0) 0x97e51d8b79dda2066d9dae8ea59decd9cceac1d3
+(1) 0x6c5ef4bc898e9f6b0cd05c1855d11615afdf032c
+(2) 0x1ddbe68784acb0c4b458b698857d17a37df08b70
+(3) 0xa43ebe445b0d64a24dd0002aa4b80215d3e8bf82
+(4) 0x04f0f2b0939613cf4b05a5f06f6c6400824cafb7
+(5) 0xb9d058c5e2641bded553e89d91d3575fe9cfb828
+(6) 0xb7b06e6c13809ac30ee17abd329ac89b2bdbdaa7
+(7) 0x7921eccd2b234a8c049ee540040f096f0ae366cd
+(8) 0xa9737976ec57db7b186268af7566093813349552
+(9) 0x7fa523ca6979474c8d0b539d4c12110ea57e1d31
+
+Private Keys
+==================
+(0) 89d18e2814031878d3f0028a00fccbb7a20b4d1424cb90e0b353405b92fae1a3
+(1) 07ababc8638283b064ce397ea3c27cbf25650d5149b6587dcb40fcc8393373fd
+(2) ab71d036ca974fc071c04e4c86bdcb3cc5c8c924d656b51a280bab8c84069584
+(3) 59491c66f04004e844a5becaffc98b771315f85dc1df565da42ce0d46039108f
+(4) ff4f2a35d842adabc2063171c3461f579632e7da4203ab2f34898842b25c744f
+(5) 511a7c74a3ae668dd472b10f65646b4a1ea976c09f14e6e7138b6845a2be375f
+(6) a90dd63cdb72684e700970eb88c3bea080fea2becb322097c47a8158cb62593d
+(7) 993831a22fd23a6d5bbf9438876c66c5a9f114de4602fbac7be6671a28cfcb5c
+(8) df67ef27a1ae444db2caac42197ed42a82fbb7b64c8403d0a0ffd25e0c6b8b67
+(9) 4099b25a5f08ed6bb8979d3ce1a6cf6c768419d37307731574ed1d81ce9ac160
+
+HD Wallet
+==================
+Mnemonic:      seat unit wink cruise weapon ribbon kiwi behave friend arm dry gift
+Base HD Path:  m/44'/60'/0'/0/{account_index}
+
+Listening on localhost:8545
+Note defaults for parameters...
+
+You have to pay N ethers to send a transaction, where N = gas x gasPrice, so if you set gasPrice=0, any attempt will fail with "out of gas".
+https://github.com/ConsenSys/truffle-webpack-demo/issues/2
+
+Here are the commands to start the server:
+
+CMD>
+testrpc --gasLimit="0x11F9F10" --gasPrice 500000000 -m "seat unit wink cruise weapon ribbon kiwi behave friend arm dry gift" --account="0x89d18e2814031878d3f0028a00fccbb7a20b4d1424cb90e0b353405b92fae1a3,10000000000000000000" --account="0x07ababc8638283b064ce397ea3c27cbf25650d5149b6587dcb40fcc8393373fd,10000000000000000000" --account="0xab71d036ca974fc071c04e4c86bdcb3cc5c8c924d656b51a280bab8c84069584,10000000000000000000" --account="0x59491c66f04004e844a5becaffc98b771315f85dc1df565da42ce0d46039108f,10000000000000000000" --account="0xff4f2a35d842adabc2063171c3461f579632e7da4203ab2f34898842b25c744f,10000000000000000000" --account="0x511a7c74a3ae668dd472b10f65646b4a1ea976c09f14e6e7138b6845a2be375f,10000000000000000000"
+
+PowerShell (note the ' '):
+
+# A better way in PowerShell (because it creates a new process to run testrpc which makes it easy to re-run testrpc from your current PS session)
+PS>
+$testrpcProcess = Start-Process testrpc '--gasLimit="0x11F9F10" --gasPrice 500000000 -m "seat unit wink cruise weapon ribbon kiwi behave friend arm dry gift" --account="0x89d18e2814031878d3f0028a00fccbb7a20b4d1424cb90e0b353405b92fae1a3,10000000000000000000" --account="0x07ababc8638283b064ce397ea3c27cbf25650d5149b6587dcb40fcc8393373fd,10000000000000000000" --account="0xab71d036ca974fc071c04e4c86bdcb3cc5c8c924d656b51a280bab8c84069584,10000000000000000000" --account="0x59491c66f04004e844a5becaffc98b771315f85dc1df565da42ce0d46039108f,10000000000000000000" --account="0xff4f2a35d842adabc2063171c3461f579632e7da4203ab2f34898842b25c744f,10000000000000000000" --account="0x511a7c74a3ae668dd472b10f65646b4a1ea976c09f14e6e7138b6845a2be375f,10000000000000000000"' -PassThru
+
+# Command for running on 'demo-test' network (testrpc running on an Azure VM):
+$testrpcProcess = Start-Process testrpc '--network-id="27001" --gasLimit="0x11F9F10" --gasPrice 500000000 -m "seat unit wink cruise weapon ribbon kiwi behave friend arm dry gift" --account="0x89d18e2814031878d3f0028a00fccbb7a20b4d1424cb90e0b353405b92fae1a3,10000000000000000000" --account="0x07ababc8638283b064ce397ea3c27cbf25650d5149b6587dcb40fcc8393373fd,10000000000000000000" --account="0xab71d036ca974fc071c04e4c86bdcb3cc5c8c924d656b51a280bab8c84069584,10000000000000000000" --account="0x59491c66f04004e844a5becaffc98b771315f85dc1df565da42ce0d46039108f,10000000000000000000" --account="0xff4f2a35d842adabc2063171c3461f579632e7da4203ab2f34898842b25c744f,10000000000000000000" --account="0x511a7c74a3ae668dd472b10f65646b4a1ea976c09f14e6e7138b6845a2be375f,10000000000000000000"' -PassThru
+psping 52.163.242.73:8545
+
+# Command for running on 'development-no-data-seed' network (i.e. migrates contracts but skips the data seed step...)
+$testrpcProcess = Start-Process testrpc '--network-id="27666" --gasLimit="0x11F9F10" --gasPrice 500000000 -m "seat unit wink cruise weapon ribbon kiwi behave friend arm dry gift" --account="0x89d18e2814031878d3f0028a00fccbb7a20b4d1424cb90e0b353405b92fae1a3,10000000000000000000" --account="0x07ababc8638283b064ce397ea3c27cbf25650d5149b6587dcb40fcc8393373fd,10000000000000000000" --account="0xab71d036ca974fc071c04e4c86bdcb3cc5c8c924d656b51a280bab8c84069584,10000000000000000000" --account="0x59491c66f04004e844a5becaffc98b771315f85dc1df565da42ce0d46039108f,10000000000000000000" --account="0xff4f2a35d842adabc2063171c3461f579632e7da4203ab2f34898842b25c744f,10000000000000000000" --account="0x511a7c74a3ae668dd472b10f65646b4a1ea976c09f14e6e7138b6845a2be375f,10000000000000000000"' -PassThru
+
+See truffle.js for network configs.
+
+# WARNING: If you update these commands, then you may need to update the VSTS Build step for starting the testrpc process... #

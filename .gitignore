@@ -1,0 +1,11 @@
+# Node.js Tools for Visual Studio
+.ntvs_analysis.dat
+node_modules/
+build
+node_modules
+yarn-error.log
+
+# Typescript v1 declaration files
+typings/
+
+.vs/
