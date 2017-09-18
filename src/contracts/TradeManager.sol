@@ -3,17 +3,17 @@ pragma solidity ^0.4.2;
 import './Owned.sol';
 import './KeyedCollection.sol';
 
-///
-/// Defines the contract for trades.
-///
+//
+// Defines the contract for trades.
+//
 contract TradeManager is Owned, KeyedCollection {
 
-    enum TradeStatus { Created, CounterpartyCertified, CounterpartyRejected } 
+    enum TradeStatus { Created, CounterpartyCertified, CounterpartyRejected }
     TradeStatus constant DEFAULT_TRADE_STATUS = TradeStatus.Created;
 
     struct Trade {
         bytes32 referenceCode;
-        uint issueDate;        
+        uint issueDate;
         TradeStatus status;
         address vendor;
         address counterparty;
@@ -24,9 +24,9 @@ contract TradeManager is Owned, KeyedCollection {
 
     // Trades by reference code
     mapping (bytes32 => Trade) private trades;
-    
+
     function exists(bytes32 key) public constant
-        returns(bool) 
+        returns(bool)
     {
         if (keys.length == 0) {
             return false;
@@ -37,15 +37,15 @@ contract TradeManager is Owned, KeyedCollection {
     function insert(bytes32 referenceCode, uint issueDate, uint offerExpiry, address vendor, address counterparty) public
         returns(uint index)
     {
-        require(!exists(referenceCode)); 
+        require(!exists(referenceCode));
 
         Trade memory trade = Trade({
-            referenceCode: referenceCode, 
-            issueDate: issueDate, 
+            referenceCode: referenceCode,
+            issueDate: issueDate,
             status: DEFAULT_TRADE_STATUS,
             offerExpiry: offerExpiry,
-            vendor: vendor, 
-            counterparty: counterparty, 
+            vendor: vendor,
+            counterparty: counterparty,
             isValue: true,
             offerAccepted: 0x0
         });
@@ -53,26 +53,26 @@ contract TradeManager is Owned, KeyedCollection {
 
         return super.addKey(referenceCode);
     }
-    
+
     function getByIndex(uint index) public constant
         returns(bytes32, uint, uint, uint, TradeStatus, address, address)
     {
         require(index >= 0 && index < keys.length);
-        
-        return getByReferenceCode(keys[index]); 
+
+        return getByReferenceCode(keys[index]);
     }
 
-    function getByReferenceCode(bytes32 referenceCode) public constant 
+    function getByReferenceCode(bytes32 referenceCode) public constant
         returns(bytes32, uint, uint, uint, TradeStatus, address, address)
     {
-        require(exists(referenceCode)); 
+        require(exists(referenceCode));
 
         Trade memory trade;
         trade = trades[referenceCode];
 
         return(trade.referenceCode, trade.issueDate, trade.offerExpiry, trade.offerAccepted, trade.status, trade.vendor, trade.counterparty);
-    } 
-    
+    }
+
     function updateStatus(bytes32 referenceCode, uint offerAccepted, TradeStatus status) public
     {
         require(exists(referenceCode));

@@ -4,16 +4,16 @@ import './Owned.sol';
 import './Trades.sol';
 import './TradeManager.sol';
 
-///
-/// Defines the Trade Register contract. This is the entry point to rergister trades.
-///
+//
+// Defines the Trade Register contract. This is the entry point to rergister trades.
+//
 contract TradeRegister is Owned {
 
-    /// Depends on these guys contracts
+    // Depends on these guys contracts
     address private trades;
     address private tradeManager;
 
-    function TradeRegister() Owned() {        
+    function TradeRegister() Owned() {
         trades = new Trades();
         tradeManager = new TradeManager();
     }
@@ -25,14 +25,14 @@ contract TradeRegister is Owned {
 
     function getTradesByAddress(address trader)
         restricted(trader)
-        public constant returns(bytes32[] sentTradeIds, bytes32[] receivedTradeIds) 
+        public constant returns(bytes32[] sentTradeIds, bytes32[] receivedTradeIds)
     {
         var (sentTradesCount, receivedTradesCount) = Trades(trades).getCounts(trader);
-        
+
         uint i;
-        
+
         // Sent and received trades
-        sentTradeIds = new bytes32[](sentTradesCount);    
+        sentTradeIds = new bytes32[](sentTradesCount);
         for (i = 0; i < sentTradesCount; ++i) {
             sentTradeIds[i] = Trades(trades).getSentTrade(trader, i);
         }
@@ -40,7 +40,7 @@ contract TradeRegister is Owned {
         for (i = 0; i < receivedTradesCount; ++i) {
             receivedTradeIds[i] = Trades(trades).getReceivedTrade(trader, i);
         }
-        
+
         return (sentTradeIds, receivedTradeIds);
     }
 
@@ -51,7 +51,7 @@ contract TradeRegister is Owned {
         restricted(vendor) // The seller enters this trade...
         requireTraders(vendor, counterparty)
         public
-        returns(uint index) 
+        returns(uint index)
     {
         index = TradeManager(tradeManager).insert(referenceCode, issueDate, offerExpiry, vendor, counterparty);
 
@@ -64,7 +64,7 @@ contract TradeRegister is Owned {
     }
 
     function certifyTradeAsCounterparty(bytes32 referenceCode, address counterparty)
-    restricted(counterparty) 
+    restricted(counterparty)
     public {
         var (, , , vendor, tradeCounterparty) = getTradeByReferenceCode(referenceCode);
         require(tradeCounterparty == counterparty);
