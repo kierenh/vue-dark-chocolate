@@ -1,8 +1,8 @@
 pragma solidity ^0.4.2;
 
-///
-/// Defines an owned contract.
-///
+//
+// Defines an owned contract.
+//
 contract Owned {
 
     // The contract owner (who has permission to destroy this contract)
@@ -21,12 +21,12 @@ contract Owned {
         if (msg.sender == owner)
         _;
     }
-    
-    ///
-    /// A restricted modifier that restricts access to the owner of this contract -OR- that the sender is the given address.
-    ///
+
+    //
+    // A restricted modifier that restricts access to the owner of this contract -OR- that the sender is the given address.
+    //
     modifier restricted(address entityOwner) {       
-		require (msg.sender == owner || msg.sender == entityOwner);        
+		require (msg.sender == owner || msg.sender == entityOwner);
         _;
 	}
 
