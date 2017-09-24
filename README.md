@@ -16,6 +16,8 @@ To initialize a project with this example, run `truffle init vue-dark-chocolate`
 The Ethereum test server
 `npm install -g ethereumjs-testrpc`
 
+Install [metamask](https://metamask.io/) (see also: [Truffle and Metamask](http://truffleframework.com/tutorials/truffle-and-metamask))
+
 ## Building and running smart contract unit tests
 1. Start an rpc instance `Restart-TestRpcInstance.ps1 -networkID: 27666` (27666 is the ID of the network which is used at unit test time to skip data seeding, see truffle.js config)
 1. Run `truffle compile`
