@@ -43,13 +43,13 @@ In combination with smart contract design, how migrations work, and how you refe
 
 >The Migrations contract stores (in last_completed_migration) a number that corresponds to the last applied "migration" script, found in the migrations folder. Deploying this Migrations contract is always the first such step anyway. The numbering convention is x_script_name.js, with x starting at 1. Your real-meat contracts would typically come in scripts starting at 2_....
 >
->So, as this Migrations contract stores the number of the last deployment script applied, Truffle will not run those scripts again. On the other hand, in the future, your app may need to have a modified, or new, contract deployed. For that to happen, you create a new script with an increased number that describes the steps that need to take place. Then, again, after they have run once, they will not run again.
-[what are truffle migrations on stackoverflow](https://ethereum.stackexchange.com/questions/8299/what-are-truffle-migrations)
-That's right, they won't run again, ever, so make sure your contract is ready for the wild because once it's on the blockchain, it's there forever! You can't really pull it back and add a field like you might with a database table :)
+>So, as this Migrations contract stores the number of the last deployment script applied, Truffle will not run those scripts again. On the other hand, in the future, your app may need to have a modified, or new, contract deployed. For that to happen, you create a new script with an increased number that describes the steps that need to take place. Then, again, after they have run once, they will not run again.<br>
+[what are truffle migrations on stackoverflow](https://ethereum.stackexchange.com/questions/8299/what-are-truffle-migrations)<br>
+That's right, they won't run again, ever, so make sure your contract is ready for the wild because once it's on the blockchain, it's there forever! You can't really pull it back and add a field like you might with a database table :)<br>
 
 > When compiling and running migrations on a specific network, contract artifacts will be saved and recorded for later use. 
-> When your contract abstractions detect that you're Ethereum client is connected to a specific network, they'll use the contract artifacts associated that network to simplify app deployment. 
-[truffle docs - advanced - configuration#networks](http://truffleframework.com/docs/advanced/configuration#networks)
+> When your contract abstractions detect that you're Ethereum client is connected to a specific network, they'll use the contract artifacts associated that network to simplify app deployment. <br>
+[truffle docs - advanced - configuration#networks](http://truffleframework.com/docs/advanced/configuration#networks)<br>
 
 ## Possible upgrades
 Upgrades welcome, just shoot through a pull request.
