@@ -8,8 +8,13 @@ This has only been tested on Windows but _should_ work just as well on Linux _(s
 To help reduce the learning curve to get started with Ethereum Blockchain and Truffle suite this sample includes some test data (in the form of testrpc accounts) and data seeding for smart contracts. To get started, you'll need to load the accounts in to Metamask. Check out testrpc-sample.md and use Metamask to import the HD Wallet mnemonic.
 
 ## Usage
+If you landed here you probably already have truffle, but just in case:
+`npm install -g truffle`
 
 To initialize a project with this example, run `truffle init vue-dark-chocolate` inside an empty directory.
+
+The Ethereum test server
+`npm install -g ethereumjs-testrpc`
 
 ## Building and running smart contract unit tests
 1. Start an rpc instance `Restart-TestRpcInstance.ps1 -networkID: 27666` (27666 is the ID of the network which is used at unit test time to skip data seeding, see truffle.js config)
@@ -57,8 +62,22 @@ Upgrades welcome, just shoot through a pull request.
 * Listen to events in the TradeRegister.sol and read historical events via web3 event/filter APIs
 * Build and Release from VSTS to an Azure App Service [ETHEREUM DEVOPS WITH TRUFFLE, TESTRPC & VISUAL STUDIO TEAM SERVICES](http://truffleframework.com/tutorials/ethereum-devops-truffle-testrpc-vsts) & [Ethereum DevOps with VSTS – easier now with new Truffle installer + npx](https://davidburela.wordpress.com/2017/09/06/ethereum-devops-with-vsts-easier-now-with-new-truffle-installer-npx/)
 
-## Common Errors
-I did see some quirks when restarting testrpc instances and trying to connect from Metamask. Looks like it was also observed in this [stackoverflow]() too. The resolution is really just to forcibly reconnect to the rpc instance by reselecting in Metamask.
+## Errors and Troubleshooting
+
+### Chrome, Metamask & TestRPC
+After going through the dev-test inner-loop cycle many times, there was an instance where the web app did not retrieve the correct data from the blockchain. There were 2 trades loaded, but I could only retrieve 1, and only for some accounts.
+
+* In the web app, I could see it was not retrieving the correct number of trades for each actor (and subsequently could not look them up * correctly) by debugging the Javascript
+* In truffle console, I was able to run ad-hoc queries and get the expected results
+* Truffle test – the unit tests were all passing
+* I’m fairly certain I closed/re-opened browser during this time, but what seemed to do the trick was forcing metamask to re-connect to the testrpc instance so I have put this down to a quirk in metamask connecting to testrpc (certainly the versions being used anyway).
+
+When I re-selected the network, the page refreshes and the web app returns the correct results. Basically this was just opening metamask and clicking on “Localhost 8545” which seemed to trigger some kind of refresh and things started working as expected. This post reports a similar problem: https://stackoverflow.com/questions/45585735/testrpc-the-tx-doesnt-have-the-correct-nonce
+There doesn’t appear to be a great solution, the advice is to close browser instances etc and reconnect to the RPC.
+
+### truffle test
+It’s important to be aware that tests that don’t handle exceptions thrown from within promises correctly can cause subsequent tests to fail with misleading error messages. Perhaps tests in 1 suite work, but when combined with the whole test suite they fail. This is a good indication there’s an exception thrown from within a promise is not handled correctly. Be sure to add a catch() handler to the top-level promise. To help troubleshoot, you can isolate tests by running individual files in Truffle. 
+`truffle test ./path/to/test/file.js`
 
 ## Dev Notes and Links
 
