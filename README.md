@@ -11,7 +11,7 @@ To help reduce the learning curve to get started with Ethereum Blockchain and Tr
 If you landed here you probably already have truffle, but just in case:
 `npm install -g truffle`
 
-To initialize a project with this example, run `truffle init vue-dark-chocolate` inside an empty directory.
+To initialize a project with this example, run `truffle unbox kierenh/vue-dark-chocolate` inside an empty directory.
 
 The Ethereum test server
 `npm install -g ethereumjs-testrpc`
