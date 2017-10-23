@@ -71,10 +71,10 @@ After going through the dev-test inner-loop cycle many times, there was an insta
 
 * In the web app, I could see it was not retrieving the correct number of trades for each actor (and subsequently could not look them up * correctly) by debugging the Javascript
 * In truffle console, I was able to run ad-hoc queries and get the expected results
-* Truffle test – the unit tests were all passing
+* Truffle test - the unit tests were all passing
 * I'm fairly certain I closed/re-opened browser during this time, but what seemed to do the trick was forcing metamask to re-connect to the testrpc instance so I have put this down to a quirk in metamask connecting to testrpc (certainly the versions being used anyway).
 
-When I re-selected the network, the page refreshes and the web app returns the correct results. Basically this was just opening metamask and clicking on “Localhost 8545” which seemed to trigger some kind of refresh and things started working as expected. This post reports a similar problem: https://stackoverflow.com/questions/45585735/testrpc-the-tx-doesnt-have-the-correct-nonce
+When I re-selected the network, the page refreshes and the web app returns the correct results. Basically this was just opening metamask and clicking on "Localhost 8545" which seemed to trigger some kind of refresh and things started working as expected. This post reports a similar problem: https://stackoverflow.com/questions/45585735/testrpc-the-tx-doesnt-have-the-correct-nonce
 There doesn't appear to be a great solution, the advice is to close browser instances etc and reconnect to the RPC.
 
 ### truffle test
